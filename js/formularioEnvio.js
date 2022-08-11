@@ -1,0 +1,118 @@
+validarMPago = function(){
+	pago = document.getElementById("mPago").value;
+	valido = Boolean(true);
+	if(pago == ""){
+		document.getElementById("mPagoInvalido").classList.remove("visually-hidden");
+   		document.getElementById("mPago").classList.add("border");
+    	document.getElementById("mPago").classList.add("border-danger");
+    	document.getElementById("mPagoValido").classList.add("visually-hidden");
+    	document.getElementById("mPago").classList.remove("border");
+    	document.getElementById("mPago").classList.remove("border-success");
+		valido = Boolean(false);
+	}else{
+	  document.getElementById("mPagoInvalido").classList.add("visually-hidden");
+      document.getElementById("mPago").classList.remove("border");
+      document.getElementById("mPago").classList.remove("border-danger");
+      document.getElementById("mPagoValido").classList.remove("visually-hidden");
+      document.getElementById("mPago").classList.add("border");
+      document.getElementById("mPago").classList.add("border-success");
+	}
+	return valido;
+}
+
+validarCPostal = function(){
+	cPostal = document.getElementById("codigo").value;
+	valido = Boolean(true);
+	if(cPostal < 1000 || cPostal > 9999){
+		document.getElementById("codigoInvalido").classList.remove("visually-hidden");
+   		document.getElementById("codigo").classList.add("border");
+    	document.getElementById("codigo").classList.add("border-danger");
+    	document.getElementById("codigoValido").classList.add("visually-hidden");
+    	document.getElementById("codigo").classList.remove("border");
+    	document.getElementById("codigo").classList.remove("border-success");
+		valido = Boolean(false);
+	}else{
+	  document.getElementById("codigoInvalido").classList.add("visually-hidden");
+      document.getElementById("codigo").classList.remove("border");
+      document.getElementById("codigo").classList.remove("border-danger");
+      document.getElementById("codigoValido").classList.remove("visually-hidden");
+      document.getElementById("codigo").classList.add("border");
+      document.getElementById("codigo").classList.add("border-success");
+	}
+	return valido;
+}
+
+validarTelefono = function(){
+    var telefono = document.getElementById("telefono").value;
+    var valido = Boolean(true);
+	if(telefono.length < 10){
+		document.getElementById("telefonoInvalido").classList.remove("visually-hidden");
+		document.getElementById("telefono").classList.add("border");
+		document.getElementById("telefono").classList.add("border-danger");
+		document.getElementById("telefonoValido").classList.add("visually-hidden");
+		document.getElementById("telefono").classList.remove("border");
+		document.getElementById("telefono").classList.remove("border-success");
+		valido = Boolean(false);
+	}else{
+	  document.getElementById("telefonoInvalido").classList.add("visually-hidden");
+	  document.getElementById("telefono").classList.remove("border");
+	  document.getElementById("telefono").classList.remove("border-danger");
+	  document.getElementById("telefonoValido").classList.remove("visually-hidden");
+	  document.getElementById("telefono").classList.add("border");
+	  document.getElementById("telefono").classList.add("border-success");
+	}
+	return valido;
+}
+
+validarDireccion = function(){
+	direccion = document.getElementById("direccion").value;
+	valido = Boolean(true);
+	if(direccion.length < 10){
+		document.getElementById("direccionInvalida").classList.remove("visually-hidden");
+		document.getElementById("direccion").classList.add("border");
+		document.getElementById("direccion").classList.add("border-danger");
+		document.getElementById("direccionValida").classList.add("visually-hidden");
+		document.getElementById("direccion").classList.remove("border");
+		document.getElementById("direccion").classList.remove("border-success");
+		valido = Boolean(false);
+	}else{
+		document.getElementById("direccionInvalida").classList.add("visually-hidden");
+		document.getElementById("direccion").classList.remove("border");
+		document.getElementById("direccion").classList.remove("border-danger");
+		document.getElementById("direccionValida").classList.remove("visually-hidden");
+		document.getElementById("direccion").classList.add("border");
+		document.getElementById("direccion").classList.add("border-success");
+	}
+	return valido;
+}
+
+
+validar = function(){
+	telefono = validarTelefono();
+	mPago = validarMPago();
+	codigo = validarCPostal();
+	if(document.getElementById("direccion").disabled == false){
+		direccion = validarDireccion();
+	}else{
+		direccion = Boolean(true);
+	}
+	if(telefono && mPago && codigo && direccion){
+		alert("Pronto recibira un mensaje/mail confirmando su compra");
+		document.getElementById("formEnvio").submit();
+	}	
+}
+
+btnP = document.getElementById("rPedido").addEventListener("click",validar);
+
+
+activarDireccion = function(){
+	document.getElementById("direccion").disabled = Boolean(false);
+}
+desactivarDireccion = function(){
+	document.getElementById("direccion").disabled = Boolean(true);
+}
+
+
+btnRecibir = document.getElementById("recibir").addEventListener("click",activarDireccion);
+btnRetirar = document.getElementById("retirar").addEventListener("click",desactivarDireccion); 
+btnAcordar = document.getElementById("acordar").addEventListener("click",desactivarDireccion); 

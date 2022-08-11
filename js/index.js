@@ -1,0 +1,427 @@
+//Funciones para modal de sistema de usuarios
+selIniciar = function(){
+	document.getElementById("iniciarSesion").classList.add("active");
+	document.getElementById("formSign").classList.remove("visually-hidden");
+	document.getElementById("registrarse").classList.remove("active");
+	document.getElementById("formLog").classList.add("visually-hidden");
+}
+
+selRegistrarse = function(){
+	document.getElementById("registrarse").classList.add("active");
+	document.getElementById("formLog").classList.remove("visually-hidden");
+	document.getElementById("iniciarSesion").classList.remove("active");
+	document.getElementById("formSign").classList.add("visually-hidden");
+}
+
+botonI = document.getElementById("iniciarSesion");
+botonI.addEventListener("click",selIniciar);
+botonR = document.getElementById("registrarse");
+botonR.addEventListener("click",selRegistrarse);
+
+//Validación del formulario de contacto
+validarNombreContacto = function(){
+  var nombre = document.getElementById("nombreContacto").value;
+  const caracteresInvalidos = "[\]^_`";
+  var valido = Boolean(true);
+  if(nombre.length < 2){
+    document.getElementById("nombreContactoInvalido").classList.remove("visually-hidden");
+    document.getElementById("nombreContacto").classList.add("border");
+    document.getElementById("nombreContacto").classList.add("border-danger");
+    document.getElementById("nombreContactoValido").classList.add("visually-hidden");
+    document.getElementById("nombreContacto").classList.remove("border");
+    document.getElementById("nombreContacto").classList.remove("border-success");
+    valido = Boolean(false);
+  }else{
+    for(let caracter of nombre){
+      if(caracter < 'A' || caracter > 'z' || caracteresInvalidos.includes(caracter)){
+        document.getElementById("nombreContactoInvalido").classList.remove("visually-hidden");
+        document.getElementById("nombreContacto").classList.add("border");
+        document.getElementById("nombreContacto").classList.add("border-danger");
+        document.getElementById("nombreContactoValido").classList.add("visually-hidden");
+        document.getElementById("nombreContacto").classList.remove("border");
+        document.getElementById("nombreContacto").classList.remove("border-success");
+        valido = Boolean(false);
+    }
+    if(valido){
+      document.getElementById("nombreContactoInvalido").classList.add("visually-hidden");
+      document.getElementById("nombreContacto").classList.remove("border");
+      document.getElementById("nombreContacto").classList.remove("border-danger");
+      document.getElementById("nombreContactoValido").classList.remove("visually-hidden");
+      document.getElementById("nombreContacto").classList.add("border");
+      document.getElementById("nombreContacto").classList.add("border-success");
+    }
+  }
+}
+  return valido;
+}
+
+validarApellidoContacto = function(){
+  var apellido = document.getElementById("apellidoContacto").value;
+  const caracteresInvalidos = "[\]^_`";
+  var valido = Boolean(true);
+  if(apellido.length < 4){
+    document.getElementById("apellidoContactoInvalido").classList.remove("visually-hidden");
+    document.getElementById("apellidoContacto").classList.add("border");
+    document.getElementById("apellidoContacto").classList.add("border-danger");
+    document.getElementById("apellidoContactoValido").classList.add("visually-hidden");
+    document.getElementById("apellidoContacto").classList.remove("border");
+    document.getElementById("apellidoContacto").classList.remove("border-success");
+    valido = Boolean(false);
+  }else{
+    for(let caracter of apellido){
+      if(caracter < 'A' || caracter > 'z' || caracteresInvalidos.includes(caracter)){
+        document.getElementById("apellidoContactoInvalido").classList.remove("visually-hidden");
+        document.getElementById("apellidoContacto").classList.add("border");
+        document.getElementById("apellidoContacto").classList.add("border-danger");
+        document.getElementById("apellidoContactoValido").classList.add("visually-hidden");
+        document.getElementById("apellidoContacto").classList.remove("border");
+        document.getElementById("apellidoContacto").classList.remove("border-success");
+        valido = Boolean(false);
+    }
+    if(valido){
+      document.getElementById("apellidoContactoInvalido").classList.add("visually-hidden");
+      document.getElementById("apellidoContacto").classList.remove("border");
+      document.getElementById("apellidoContacto").classList.remove("border-danger");
+      document.getElementById("apellidoContactoValido").classList.remove("visually-hidden");
+      document.getElementById("apellidoContacto").classList.add("border");
+      document.getElementById("apellidoContacto").classList.add("border-success");
+      }
+    }
+  }
+  return valido;
+}
+
+validarEmailContacto = function(){
+  var email = document.getElementById("emailContacto").value;
+  const caracteresInvalidos = "/:;<=>?[\]^`";
+  var valido = Boolean(true);
+  if(email.includes('@') && email.includes('.')){
+    if(email.length < 16 || email.length > 50){
+      document.getElementById("emailContactoInvalido").classList.remove("visually-hidden");
+      document.getElementById("emailContacto").classList.add("border");
+      document.getElementById("emailContacto").classList.add("border-danger");
+      document.getElementById("emailContactoValido").classList.add("visually-hidden");
+      document.getElementById("emailContacto").classList.remove("border");
+      document.getElementById("emailContacto").classList.remove("border-success");
+      valido = Boolean(false);
+    }else{
+      for(let caracter of email){
+        if(caracter < '-' || caracter > 'z' || caracteresInvalidos.includes(caracter)){
+          document.getElementById("emailContactoInvalido").classList.remove("visually-hidden");
+          document.getElementById("emailContacto").classList.add("border");
+          document.getElementById("emailContacto").classList.add("border-danger");
+          document.getElementById("emailContactoValido").classList.add("visually-hidden");
+          document.getElementById("emailContacto").classList.remove("border");
+          document.getElementById("emailContacto").classList.remove("border-success");
+          valido = Boolean(false);
+      }
+      if(valido){
+        document.getElementById("emailContactoInvalido").classList.add("visually-hidden");
+        document.getElementById("emailContacto").classList.remove("border");
+        document.getElementById("emailContacto").classList.remove("border-danger");
+        document.getElementById("emailContactoValido").classList.remove("visually-hidden");
+        document.getElementById("emailContacto").classList.add("border");
+        document.getElementById("emailContacto").classList.add("border-success");
+        }
+      }
+    }
+  }else{
+    document.getElementById("emailContactoInvalido").classList.remove("visually-hidden");
+    document.getElementById("emailContacto").classList.add("border");
+    document.getElementById("emailContacto").classList.add("border-danger");
+    document.getElementById("emailContactoValido").classList.add("visually-hidden");
+    document.getElementById("emailContacto").classList.remove("border");
+    document.getElementById("emailContacto").classList.remove("border-success");
+    valido = Boolean(false);
+  }
+  return valido;
+}
+
+validarMensajeContacto = function(){
+  var mensaje = document.getElementById('mensajeContacto').value;
+  var valido = Boolean(true);
+  if(mensaje.length < 10){
+    document.getElementById("mensajeContactoInvalido").classList.remove("visually-hidden");
+    document.getElementById("mensajeContacto").classList.add("border");
+    document.getElementById("mensajeContacto").classList.add("border-danger");
+    document.getElementById("mensajeContactoValido").classList.add("visually-hidden");
+    document.getElementById("mensajeContacto").classList.remove("border");
+    document.getElementById("mensajeContacto").classList.remove("border-success");
+    valido = Boolean(false);
+  }else{
+    document.getElementById("mensajeContactoInvalido").classList.add("visually-hidden");
+    document.getElementById("mensajeContacto").classList.remove("border");
+    document.getElementById("mensajeContacto").classList.remove("border-danger");
+    document.getElementById("mensajeContactoValido").classList.remove("visually-hidden");
+    document.getElementById("mensajeContacto").classList.add("border");
+    document.getElementById("mensajeContacto").classList.add("border-success");
+  }
+  return valido;
+}
+
+validarContacto = function(){
+  apellido = validarApellidoContacto();
+  nombre = validarNombreContacto();
+  email = validarEmailContacto();
+  mensaje = validarMensajeContacto();
+  if(apellido && nombre && email && mensaje){
+    document.getElementById("formularioContacto").submit();
+    alert("Su mensaje se ha enviado con exito");
+  }
+}
+
+boton = document.getElementById("botonContacto");
+boton.addEventListener("click",validarContacto);
+
+//Validación del formulario de registro
+validarNombreRegistro = function(){
+  var nombre = document.getElementById("nombreRegistro").value;
+  const caracteresInvalidos = "[\]^_`";
+  var valido = Boolean(true);
+  if(nombre.length < 2){
+    document.getElementById("nombreRegistroInvalido").classList.remove("visually-hidden");
+    document.getElementById("nombreRegistro").classList.add("border");
+    document.getElementById("nombreRegistro").classList.add("border-danger");
+    document.getElementById("nombreRegistroValido").classList.add("visually-hidden");
+    document.getElementById("nombreRegistro").classList.remove("border");
+    document.getElementById("nombreRegistro").classList.remove("border-success");
+    valido = Boolean(false);
+  }else{
+    for(let caracter of nombre){
+      if(caracter < 'A' || caracter > 'z' || caracteresInvalidos.includes(caracter)){
+        document.getElementById("nombreRegistroInvalido").classList.remove("visually-hidden");
+        document.getElementById("nombreRegistro").classList.add("border");
+        document.getElementById("nombreRegistro").classList.add("border-danger");
+        document.getElementById("nombreRegistroValido").classList.add("visually-hidden");
+        document.getElementById("nombreRegistro").classList.remove("border");
+        document.getElementById("nombreRegistro").classList.remove("border-success");
+        valido = Boolean(false);
+    }
+    if(valido){
+      document.getElementById("nombreRegistroInvalido").classList.add("visually-hidden");
+      document.getElementById("nombreRegistro").classList.remove("border");
+      document.getElementById("nombreRegistro").classList.remove("border-danger");
+      document.getElementById("nombreRegistroValido").classList.remove("visually-hidden");
+      document.getElementById("nombreRegistro").classList.add("border");
+      document.getElementById("nombreRegistro").classList.add("border-success");
+    }
+  }
+}
+  return valido;
+}
+
+validarApellidoRegistro = function(){
+  var apellido = document.getElementById("apellidoRegistro").value;
+  const caracteresInvalidos = "[\]^_`";
+  var valido = Boolean(true);
+  if(apellido.length < 4){
+    document.getElementById("apellidoRegistroInvalido").classList.remove("visually-hidden");
+    document.getElementById("apellidoRegistro").classList.add("border");
+    document.getElementById("apellidoRegistro").classList.add("border-danger");
+    document.getElementById("apellidoRegistroValido").classList.add("visually-hidden");
+    document.getElementById("apellidoRegistro").classList.remove("border");
+    document.getElementById("apellidoRegistro").classList.remove("border-success");
+    valido = Boolean(false);
+  }else{
+    for(let caracter of apellido){
+      if(caracter < 'A' || caracter > 'z' || caracteresInvalidos.includes(caracter)){
+        document.getElementById("apellidoRegistroInvalido").classList.remove("visually-hidden");
+        document.getElementById("apellidoRegistro").classList.add("border");
+        document.getElementById("apellidoRegistro").classList.add("border-danger");
+        document.getElementById("apellidoRegistroValido").classList.add("visually-hidden");
+        document.getElementById("apellidoRegistro").classList.remove("border");
+        document.getElementById("apellidoRegistro").classList.remove("border-success");
+        valido = Boolean(false);
+    }
+    if(valido){
+      document.getElementById("apellidoRegistroInvalido").classList.add("visually-hidden");
+      document.getElementById("apellidoRegistro").classList.remove("border");
+      document.getElementById("apellidoRegistro").classList.remove("border-danger");
+      document.getElementById("apellidoRegistroValido").classList.remove("visually-hidden");
+      document.getElementById("apellidoRegistro").classList.add("border");
+      document.getElementById("apellidoRegistro").classList.add("border-success");
+      }
+    }
+  }
+  return valido;
+}
+
+validarEmailRegistro = function(){
+  var email = document.getElementById("emailRegistro").value;
+  const caracteresInvalidos = "/:;<=>?[\]^`";
+  var valido = Boolean(true);
+  if(email.includes('@') && email.includes('.')){
+    if(email.length < 16 || email.length > 50){
+      document.getElementById("emailRegistroInvalido").classList.remove("visually-hidden");
+      document.getElementById("emailRegistro").classList.add("border");
+      document.getElementById("emailRegistro").classList.add("border-danger");
+      document.getElementById("emailRegistroValido").classList.add("visually-hidden");
+      document.getElementById("emailRegistro").classList.remove("border");
+      document.getElementById("emailRegistro").classList.remove("border-success");
+      valido = Boolean(false);
+    }else{
+      for(let caracter of email){
+        if(caracter < '-' || caracter > 'z' || caracteresInvalidos.includes(caracter)){
+          document.getElementById("emailRegistroInvalido").classList.remove("visually-hidden");
+          document.getElementById("emailRegistro").classList.add("border");
+          document.getElementById("emailRegistro").classList.add("border-danger");
+          document.getElementById("emailRegistroValido").classList.add("visually-hidden");
+          document.getElementById("emailRegistro").classList.remove("border");
+          document.getElementById("emailRegistro").classList.remove("border-success");
+          valido = Boolean(false);
+      }
+      if(valido){
+        document.getElementById("emailRegistroInvalido").classList.add("visually-hidden");
+        document.getElementById("emailRegistro").classList.remove("border");
+        document.getElementById("emailRegistro").classList.remove("border-danger");
+        document.getElementById("emailRegistroValido").classList.remove("visually-hidden");
+        document.getElementById("emailRegistro").classList.add("border");
+        document.getElementById("emailRegistro").classList.add("border-success");
+        }
+      }
+    }
+  }else{
+    document.getElementById("emailRegistroInvalido").classList.remove("visually-hidden");
+    document.getElementById("emailRegistro").classList.add("border");
+    document.getElementById("emailRegistro").classList.add("border-danger");
+    document.getElementById("emailRegistroValido").classList.add("visually-hidden");
+    document.getElementById("emailRegistro").classList.remove("border");
+    document.getElementById("emailRegistro").classList.remove("border-success");
+    valido = Boolean(false);
+  }
+  return valido;
+}
+
+validarContraseniaRegistro = function(){
+  var contrasenia = document.getElementById("contraseñaRegistro").value;
+  var valido = Boolean(true);
+  if(contrasenia.length < 8 || contrasenia.length > 20){
+    document.getElementById("contraseñaRegistroInvalido").classList.remove("visually-hidden");
+    document.getElementById("contraseñaRegistro").classList.add("border");
+    document.getElementById("contraseñaRegistro").classList.add("border-danger");
+    document.getElementById("contraseñaRegistroValido").classList.add("visually-hidden");
+    document.getElementById("contraseñaRegistro").classList.remove("border");
+    document.getElementById("contraseñaRegistro").classList.remove("border-success");
+    valido = Boolean(false);
+  }else{
+    document.getElementById("contraseñaRegistroInvalido").classList.add("visually-hidden");
+    document.getElementById("contraseñaRegistro").classList.remove("border");
+    document.getElementById("contraseñaRegistro").classList.remove("border-danger");
+    document.getElementById("contraseñaRegistroValido").classList.remove("visually-hidden");
+    document.getElementById("contraseñaRegistro").classList.add("border");
+    document.getElementById("contraseñaRegistro").classList.add("border-success");
+  }
+  return valido;
+}
+
+validarRepContraseniaRegistro = function(){
+  var contrasenia = document.getElementById("contraseñaRegistro").value;
+  var repContrasenia = document.getElementById("repetirContraseñaRegistro").value;
+  var valido = Boolean(true);
+  if(contrasenia != repContrasenia){
+    document.getElementById("repetirContraseñaRegistroInvalido").classList.remove("visually-hidden");
+    document.getElementById("repetirContraseñaRegistro").classList.add("border");
+    document.getElementById("repetirContraseñaRegistro").classList.add("border-danger");
+    valido = Boolean(false);
+  }else{
+    document.getElementById("repetirContraseñaRegistroInvalido").classList.add("visually-hidden");
+    document.getElementById("repetirContraseñaRegistro").classList.remove("border");
+    document.getElementById("repetirContraseñaRegistro").classList.remove("border-danger");
+  }
+  return valido;
+}
+
+validarRegistro = function(){
+  apellido = validarApellidoRegistro();
+  nombre = validarNombreRegistro();
+  email = validarEmailRegistro();
+  contrasenia = validarContraseniaRegistro();
+  repContrasenia = validarRepContraseniaRegistro();
+  if(apellido && nombre && email && telefono && contrasenia && repContrasenia){
+    document.getElementById("formularioRegistro").submit();
+    alert("Se ha registrado con éxito.");
+  }
+}
+
+botonRegistro = document.getElementById("botonRegistro");
+botonRegistro.addEventListener("click",validarRegistro);
+
+//validacion del registro
+validarEmailLogin = function(){
+  var email = document.getElementById("emailLogin").value;
+  const caracteresInvalidos = "/:;<=>?[\]^`";
+  var valido = Boolean(true);
+  if(email.includes('@') && email.includes('.')){
+    if(email.length < 16 || email.length > 50){
+      document.getElementById("emailLoginInvalido").classList.remove("visually-hidden");
+      document.getElementById("emailLogin").classList.add("border");
+      document.getElementById("emailLogin").classList.add("border-danger");
+      document.getElementById("emailLoginValido").classList.add("visually-hidden");
+      document.getElementById("emailLogin").classList.remove("border");
+      document.getElementById("emailLogin").classList.remove("border-success");
+      valido = Boolean(false);
+    }else{
+      for(let caracter of email){
+        if(caracter < '-' || caracter > 'z' || caracteresInvalidos.includes(caracter)){
+          document.getElementById("emailLoginInvalido").classList.remove("visually-hidden");
+          document.getElementById("emailLogin").classList.add("border");
+          document.getElementById("emailLogin").classList.add("border-danger");
+          document.getElementById("emailLoginValido").classList.add("visually-hidden");
+          document.getElementById("emailLogin").classList.remove("border");
+          document.getElementById("emailLogin").classList.remove("border-success");
+          valido = Boolean(false);
+      }
+      if(valido){
+        document.getElementById("emailLoginInvalido").classList.add("visually-hidden");
+        document.getElementById("emailLogin").classList.remove("border");
+        document.getElementById("emailLogin").classList.remove("border-danger");
+        document.getElementById("emailLoginValido").classList.remove("visually-hidden");
+        document.getElementById("emailLogin").classList.add("border");
+        document.getElementById("emailLogin").classList.add("border-success");
+        }
+      }
+    }
+  }else{
+    document.getElementById("emailLoginInvalido").classList.remove("visually-hidden");
+    document.getElementById("emailLogin").classList.add("border");
+    document.getElementById("emailLogin").classList.add("border-danger");
+    document.getElementById("emailLoginValido").classList.add("visually-hidden");
+    document.getElementById("emailLogin").classList.remove("border");
+    document.getElementById("emailLogin").classList.remove("border-success");
+    valido = Boolean(false);
+  }
+  return valido;
+}
+
+validarContraseniaLogin = function(){
+  var contrasenia = document.getElementById("contraseniaLogin").value;
+  var valido = Boolean(true);
+  if(contrasenia.length < 8 || contrasenia.length > 20){
+    document.getElementById("contraseniaLoginInvalida").classList.remove("visually-hidden");
+    document.getElementById("contraseniaLogin").classList.add("border");
+    document.getElementById("contraseniaLogin").classList.add("border-danger");
+    document.getElementById("contraseniaLoginValida").classList.add("visually-hidden");
+    document.getElementById("contraseniaLogin").classList.remove("border");
+    document.getElementById("contraseniaLogin").classList.remove("border-success");
+    valido = Boolean(false);
+  }else{
+    document.getElementById("contraseniaLoginInvalida").classList.add("visually-hidden");
+    document.getElementById("contraseniaLogin").classList.remove("border");
+    document.getElementById("contraseniaLogin").classList.remove("border-danger");
+    document.getElementById("contraseniaLoginValida").classList.remove("visually-hidden");
+    document.getElementById("contraseniaLogin").classList.add("border");
+    document.getElementById("contraseniaLogin").classList.add("border-success");
+  }
+  return valido;
+}
+
+validarLogin = function(){
+  email = validarEmailLogin();
+  contrasenia = validarContraseniaLogin();
+  if(email && contrasenia){
+    document.getElementById("formularioLogin").submit();
+  }
+}
+
+botonLogin = document.getElementById("botonLogin");
+botonLogin.addEventListener("click",validarLogin);

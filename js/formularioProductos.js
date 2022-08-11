@@ -1,0 +1,90 @@
+//Validacion formulario de compra
+
+validarTalle = function(){
+	talle = document.getElementById("talle").value;
+	valido = Boolean(true);
+	if(talle == ""){
+		document.getElementById("talleInvalido").classList.remove("visually-hidden");
+   		document.getElementById("talle").classList.add("border");
+    	document.getElementById("talle").classList.add("border-danger");
+    	document.getElementById("talleValido").classList.add("visually-hidden");
+    	document.getElementById("talle").classList.remove("border");
+    	document.getElementById("talle").classList.remove("border-success");
+		valido = Boolean(false);
+	}else{
+	  document.getElementById("talleInvalido").classList.add("visually-hidden");
+      document.getElementById("talle").classList.remove("border");
+      document.getElementById("talle").classList.remove("border-danger");
+      document.getElementById("talleValido").classList.remove("visually-hidden");
+      document.getElementById("talle").classList.add("border");
+      document.getElementById("talle").classList.add("border-success");
+	}
+	return valido;
+}
+
+validarColor = function(){
+	color = document.getElementById("color").value;
+	valido = Boolean(true);
+	if(color.length == 0){
+		document.getElementById("colorInvalido").classList.remove("visually-hidden");
+   		document.getElementById("color").classList.add("border");
+    	document.getElementById("color").classList.add("border-danger");
+    	document.getElementById("colorValido").classList.add("visually-hidden");
+    	document.getElementById("color").classList.remove("border");
+    	document.getElementById("color").classList.remove("border-success");
+		valido = Boolean(false);
+	}else{
+	  document.getElementById("colorInvalido").classList.add("visually-hidden");
+      document.getElementById("color").classList.remove("border");
+      document.getElementById("color").classList.remove("border-danger");
+      document.getElementById("colorValido").classList.remove("visually-hidden");
+      document.getElementById("color").classList.add("border");
+      document.getElementById("color").classList.add("border-success");
+	}
+	return valido;
+}
+
+validarCantidad = function(){
+	cantidad = document.getElementById("cantidad").value;
+	if(cantidad.length < 1){
+		document.getElementById("cantidadInvalida").classList.remove("visually-hidden");
+   		document.getElementById("cantidad").classList.add("border");
+    	document.getElementById("cantidad").classList.add("border-danger");
+    	document.getElementById("cantidadValida").classList.add("visually-hidden");
+    	document.getElementById("cantidad").classList.remove("border");
+    	document.getElementById("cantidad").classList.remove("border-success");
+		valido = Boolean(false);
+	}else{
+		cantidad = parseInt(cantidad);
+		if(cantidad < 1){
+			document.getElementById("cantidadInvalida").classList.remove("visually-hidden");
+	   		document.getElementById("cantidad").classList.add("border");
+	    	document.getElementById("cantidad").classList.add("border-danger");
+	    	document.getElementById("cantidadValida").classList.add("visually-hidden");
+	    	document.getElementById("cantidad").classList.remove("border");
+	    	document.getElementById("cantidad").classList.remove("border-success");
+			valido = Boolean(false);
+		}else{
+			document.getElementById("cantidadInvalida").classList.add("visually-hidden");
+	      	document.getElementById("cantidad").classList.remove("border");
+	      	document.getElementById("cantidad").classList.remove("border-danger");
+	      	document.getElementById("cantidadValida").classList.remove("visually-hidden");
+	      	document.getElementById("cantidad").classList.add("border");
+	      	document.getElementById("cantidad").classList.add("border-success");
+		}
+	}
+	return valido;
+}
+
+
+validarCompra = function(){
+	talle = validarTalle();
+	color = validarColor();
+	cantidad = validarCantidad();
+	if(talle && color && cantidad){
+       location.href="formularioEnvio.html";
+	}
+}
+
+botonCompra = document.getElementById("comprar");
+botonCompra.addEventListener("click",validarCompra);

@@ -1,0 +1,17 @@
+#productosDestacados img{
+	width: 100%;
+}
+
+footer img{
+	width: 40px;
+}
+
+@media screen and (max-width: 767px) {
+	.ocultar-div{
+		display:none;
+	}
+}
+
+.esconder-div{
+	display:none;
+}
